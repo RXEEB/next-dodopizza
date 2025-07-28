@@ -4,26 +4,40 @@ import { Title } from "./title";
 import { Plus } from "lucide-react";
 import { Button } from "../ui";
 import { cn } from "@/lib/utils";
+import { Ingredient } from "@prisma/client";
 
 interface Props {
   id: number;
   name: string;
   price: number;
   count?: number;
+  ingredients: Ingredient[];
   imageUrl?: string;
   className?: string;
 }
 
-export const ProductCard: React.FC<Props> = ({ id, name, price, count, imageUrl, className }) => {
+export const ProductCard: React.FC<Props> = ({
+  id,
+  name,
+  price,
+  count,
+  imageUrl,
+  ingredients,
+  className,
+}) => {
   return (
     <div className={cn(className)}>
       <Link href={`/product/${id}`}>
         <div className="flex justify-center p-6  rounded-lg h-[260px]  ">
-          <img className="w-[215px] h-215px relative transition hover:transform hover:translate-y-1" src={imageUrl} alt="card-image" />
+          <img
+            className="w-[215px] h-215px relative transition hover:transform hover:translate-y-1"
+            src={imageUrl}
+            alt="card-image"
+          />
         </div>
         <Title text={name} size="sm" className="mb-1 mt-3 font-bold " />
         <p className="text-sm text-gray-400 flex-grow">
-          Цыпленок, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус альфредо, чеснок
+          {ingredients.map((ingredient) => ingredient.name).join(", ")}
         </p>
         <div className="flex justify-between items-center mt-4">
           <span className="text-[20px]">

@@ -26,10 +26,5 @@ export default async function ModalPage(params: {
     return notFound();
   }
 
-  return (
-    <ChooseProductModal product={product} />
-    // <Container className="flex flex-col my-10">
-    //   <h1>sssssssssssaddddddddddddddddddddddddddddddddddd</h1>
-    // </Container>
-  );
+  return <ChooseProductModal product={product} />;
 }
