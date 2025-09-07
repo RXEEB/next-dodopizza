@@ -8,7 +8,15 @@ const randomDecimalNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) * 10 + min * 10) / 10;
 };
 
-const generateProductItem = ({ productId, pizzaType, size }: { productId: number; pizzaType?: 1 | 2; size?: 20 | 30 | 40 }) => {
+const generateProductItem = ({
+  productId,
+  pizzaType,
+  size,
+}: {
+  productId: number;
+  pizzaType?: 1 | 2;
+  size?: 20 | 30 | 40;
+}) => {
   return {
     productId,
     price: randomDecimalNumber(190, 600),
@@ -143,6 +151,54 @@ async function up() {
         connect: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],
       },
     },
+  });
+
+  await prisma.story.createMany({
+    data: [
+      {
+        previewImageUrl: "/stories/logo1-350x440.webp",
+      },
+      {
+        previewImageUrl: "/stories/logo2-350x440.webp",
+      },
+      {
+        previewImageUrl: "/stories/logo3-350x440.webp",
+      },
+      {
+        previewImageUrl: "/stories/logo4-350x440.webp",
+      },
+      {
+        previewImageUrl: "/stories/logo5-350x440.webp",
+      },
+      {
+        previewImageUrl: "/stories/logo6-350x440.webp",
+      },
+    ],
+  });
+
+  await prisma.storyItem.createMany({
+    data: [
+      {
+        storyId: 1,
+        sourceUrl: "/stories/1.webp",
+      },
+      {
+        storyId: 1,
+        sourceUrl: "/stories/2.webp",
+      },
+      {
+        storyId: 1,
+        sourceUrl: "/stories/3.webp",
+      },
+      {
+        storyId: 1,
+        sourceUrl: "/stories/4.webp",
+      },
+      {
+        storyId: 1,
+        sourceUrl: "/stories/5.webp",
+      },
+    ],
   });
 }
 

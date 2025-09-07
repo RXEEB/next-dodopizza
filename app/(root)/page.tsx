@@ -4,6 +4,7 @@ import {
   ProductsGroupList,
   Title,
   TopBar,
+  Stories,
 } from "@/components/shared";
 import { findPizzas, GetSearchParams } from "@/lib/find-pizzas";
 import { prisma } from "@/prisma/prisma-client";
@@ -23,6 +24,7 @@ export default async function Home({
           (category) => category.products.length > 0
         )}
       />
+      <Stories />
       <Container className="mt-10 pb-14 ">
         <div className="flex gap-[60px]">
           {/* {Фильтрация} */}
